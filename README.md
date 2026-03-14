@@ -76,6 +76,10 @@ which is expected due to morphological similarity.
 
 ---
 
+# ROC CURVE
+
+![ROC CURVE](ROC_Curve.png)
+
 # 🏗 Model Architecture
 
 Backbone network:
