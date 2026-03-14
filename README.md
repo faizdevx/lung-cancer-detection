@@ -1,4 +1,4 @@
-#Lung Cancer Detection using Deep Learning (ResNet50)
+# Lung Cancer Detection using Deep Learning (ResNet50)
 
 Deep learning system for **histopathological lung cancer classification** using **transfer learning with ResNet50**.
 
@@ -19,7 +19,7 @@ This project demonstrates a **complete machine learning pipeline**, including:
 ---
 # PIPELINE 
 
-![Pipeline](Pipeline.png)
+![Pipeline](pipeline.png)
 
 ---
 # Project Highlights
