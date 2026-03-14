@@ -78,7 +78,7 @@ which is expected due to morphological similarity.
 
 # ROC CURVE
 
-![ROC CURVE](ROC_Curve.png)
+![ROC CURVE](Overfitting.png)
 
 # 🏗 Model Architecture
 
