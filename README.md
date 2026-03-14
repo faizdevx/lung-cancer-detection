@@ -1,5 +1,10 @@
 # Lung Cancer Detection using Deep Learning (ResNet50)
 
+
+![example](example.png)
+
+
+
 Deep learning system for **histopathological lung cancer classification** using **transfer learning with ResNet50**.
 
 The model analyzes microscopic lung tissue images and classifies them into three categories:
