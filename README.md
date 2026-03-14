@@ -304,7 +304,7 @@ Potential improvements for this system:
 
 ---
 
-# 👨‍💻 Author
+#  Author
 
 Faizal  
 
