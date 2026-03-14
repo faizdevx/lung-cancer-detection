@@ -1,4 +1,4 @@
-# 🧠 Lung Cancer Detection using Deep Learning (ResNet50)
+#Lung Cancer Detection using Deep Learning (ResNet50)
 
 Deep learning system for **histopathological lung cancer classification** using **transfer learning with ResNet50**.
 
@@ -17,8 +17,12 @@ This project demonstrates a **complete machine learning pipeline**, including:
 - Deployable inference API
 
 ---
+# PIPELINE 
 
-# 🚀 Project Highlights
+![Pipeline](Pipeline.png)
+
+---
+# Project Highlights
 
 - Transfer learning using **ResNet50 pretrained on ImageNet**
 - **99.7% validation accuracy**
@@ -62,7 +66,7 @@ Error rate:
 
 ---
 
-# 📈 Confusion Matrix
+# Confusion Matrix
 
 ![Confusion Matrix](confusion_matrix.png)
 
@@ -80,7 +84,7 @@ which is expected due to morphological similarity.
 
 ![ROC CURVE](Overfitting_Check.png)
 
-# 🏗 Model Architecture
+# Model Architecture
 
 Backbone network:
 
@@ -112,7 +116,7 @@ Training strategy:
 
 ---
 
-# 🧪 Training Setup
+# Training Setup
 
 Optimizer
 
@@ -170,7 +174,7 @@ lung-cancer-detection/
 
 ---
 
-# 🧬 Dataset
+# Dataset
 
 Dataset used:
 
@@ -192,7 +196,7 @@ lung_scc | Lung Squamous Cell Carcinoma
 
 ---
 
-# 🧠 Explainability with Grad-CAM
+# Explainability with Grad-CAM
 
 Grad-CAM is implemented to visualize **which regions of the histopathology images influence the model's predictions**.
 
@@ -214,7 +218,7 @@ This helps verify that the model focuses on **relevant tumor regions** rather th
 
 ---
 
-# ⚡ Running the Project
+# Running the Project
 
 ## Clone the repository
 
@@ -249,7 +253,7 @@ python src/evaluate.py
 
 ---
 
-# 🌐 Run the Inference API
+# Run the Inference API
 
 Start FastAPI server:
 
@@ -276,7 +280,7 @@ Example response:
 
 ---
 
-# 🔮 Future Improvements
+#  Future Improvements
 
 Potential improvements for this system:
 
@@ -288,7 +292,7 @@ Potential improvements for this system:
 
 ---
 
-# 🛠 Tech Stack
+#  Tech Stack
 
 - Python
 - TensorFlow / Keras
