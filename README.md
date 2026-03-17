@@ -1,109 +1,40 @@
 # Lung Cancer Detection using Deep Learning (ResNet50)
 
-
 ![example](example.png)
-
-
 
 Deep learning system for **histopathological lung cancer classification** using **transfer learning with ResNet50**.
 
-The model analyzes microscopic lung tissue images and classifies them into three categories:
-
-- **Lung Adenocarcinoma (lung_aca)**
-- **Normal Lung Tissue (lung_n)**
-- **Lung Squamous Cell Carcinoma (lung_scc)**
-
-This project demonstrates a **complete machine learning pipeline**, including:
-
-- Data preprocessing
-- Model training
-- Performance evaluation
-- Explainability using Grad-CAM
-- Deployable inference API
+The model analyzes microscopic lung tissue images and classifies them into three categories.
 
 ---
-# PIPELINE 
 
-![Pipeline](pipeline.png)
-
----
-# Project Highlights
+## Features
 
 - Transfer learning using **ResNet50 pretrained on ImageNet**
-- **99.7% validation accuracy**
-- Only **9 misclassifications out of ~3000 validation samples**
-- Confusion matrix and detailed performance metrics
-- Grad-CAM explainability for medical interpretability
+- Classification of lung histopathology images into three tissue classes
+- Grad-CAM visualization for model explainability
+- Training and evaluation pipeline
 - Deployable **FastAPI inference service**
 
 ---
 
-# 📊 Model Performance
+## Pipeline
 
-### Validation Metrics
-
-| Metric | Score |
-|------|------|
-Accuracy | **99.7%**
-Balanced Accuracy | **99.7%**
-Macro F1 Score | **0.997**
-Matthews Correlation Coefficient | **0.995**
-
-### Class-wise Performance
-
-| Class | Precision | Recall | F1 Score |
-|------|------|------|------|
-lung_aca | 0.997 | 0.997 | 0.997
-lung_n | 1.000 | 1.000 | 1.000
-lung_scc | 0.997 | 0.994 | 0.995
-
-Total errors:
-
-```
-9 misclassifications out of ~3000 validation images
-```
-
-Error rate:
-
-```
-≈ 0.3%
-```
+![Pipeline](pipeline.png)
 
 ---
 
-# Confusion Matrix
+## Model Overview
 
-![Confusion Matrix](confusion_matrix.png)
+**Backbone**
 
-Most classification errors occur between:
-
-```
-adenocarcinoma ↔ squamous carcinoma
-```
-
-which is expected due to morphological similarity.
-
----
-
-# ROC CURVE
-
-![ROC CURVE](Overfitting_Check.png)
-
-# Model Architecture
-
-Backbone network:
-
-```
 ResNet50 (ImageNet pretrained)
-```
 
-Input resolution:
+**Input**
 
-```
 224 × 224 × 3
-```
 
-Classifier head:
+**Classifier Head**
 
 ```
 GlobalAveragePooling2D
@@ -113,62 +44,98 @@ Dropout(0.4)
 Dense(3, Softmax)
 ```
 
-Training strategy:
+---
 
-- Transfer learning
-- Frozen convolutional base
-- Custom classification layers
+## Model Performance
+
+### Validation Metrics
+
+| Metric | Score |
+|------|------|
+| Accuracy | 99.7% |
+| Balanced Accuracy | 99.7% |
+| Macro F1 Score | 0.997 |
+| Matthews Correlation Coefficient | 0.995 |
+
+### Class-wise Performance
+
+| Class | Precision | Recall | F1 Score |
+|------|------|------|------|
+| lung_aca | 0.997 | 0.997 | 0.997 |
+| lung_n | 1.000 | 1.000 | 1.000 |
+| lung_scc | 0.997 | 0.994 | 0.995 |
+
+Total errors
+
+```
+9 misclassifications out of ~3000 validation images
+```
 
 ---
 
-# Training Setup
+## Confusion Matrix
 
-Optimizer
+![Confusion Matrix](confusion_matrix.png)
 
-```
-Adam (learning rate = 1e-4)
-```
-
-Loss Function
+Most classification errors occur between
 
 ```
-Sparse Categorical Crossentropy
+adenocarcinoma ↔ squamous carcinoma
 ```
 
-Regularization techniques used:
-
-- Data augmentation
-- Dropout
-- Batch normalization
-- Early stopping
-- Learning rate scheduling
+due to morphological similarity.
 
 ---
 
-# 📂 Project Structure
+## ROC Curve
+
+![ROC CURVE](Overfitting_Check.png)
+
+---
+
+## Dataset
+
+Dataset used:
+
+**Lung and Colon Cancer Histopathological Images**
+
+Source  
+https://www.kaggle.com/datasets/andrewmvd/lung-and-colon-cancer-histopathological-images
+
+Classes
+
+| Class | Description |
+|------|-------------|
+| lung_aca | Lung Adenocarcinoma |
+| lung_n | Normal Lung Tissue |
+| lung_scc | Lung Squamous Cell Carcinoma |
+
+---
+
+## Project Structure
 
 ```
-lung-cancer-detection/
+lung-cancer-detection
 │
-├── data/
+├── data
 │
-├── notebooks/
+├── notebooks
 │   └── lung_training.ipynb
 │
-├── src/
+├── src
 │   ├── dataset.py
 │   ├── model.py
 │   ├── train.py
 │   ├── evaluate.py
 │   └── gradcam.py
 │
-├── api/
+├── api
 │   └── main.py
 │
-├── outputs/
-│   ├── models/
+├── outputs
+│   ├── models
 │   │   └── lung_model.keras
-│   └── plots/
+│   └── plots
 │       ├── confusion_matrix.png
 │       ├── roc_curve.png
 │       └── pr_curve.png
@@ -179,33 +146,69 @@ lung-cancer-detection/
 
 ---
 
-# Dataset
+## Installation
 
-Dataset used:
+Clone repository
 
-**Lung and Colon Cancer Histopathological Images**
+```bash
+git clone https://github.com/faizdevx/lung-cancer-detection.git
+cd lung-cancer-detection
+```
 
-Source:
+Install dependencies
 
-https://www.kaggle.com/datasets/andrewmvd/lung-and-colon-cancer-histopathological-images
-
-For this project only the **lung histopathology dataset** is used.
-
-Classes:
-
-| Class | Description |
-|------|-------------|
-lung_aca | Lung Adenocarcinoma
-lung_n | Normal Lung Tissue
-lung_scc | Lung Squamous Cell Carcinoma
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
-# Explainability with Grad-CAM
+## Train the Model
 
-Grad-CAM is implemented to visualize **which regions of the histopathology images influence the model's predictions**.
+```bash
+python src/train.py
+```
 
-Workflow:
+---
+
+## Evaluate the Model
+
+```bash
+python src/evaluate.py
+```
+
+---
+
+## Run the Inference API
+
+Start FastAPI server
+
+```bash
+uvicorn api.main:app --reload
+```
+
+Open API documentation
+
+```
+http://127.0.0.1:8000/docs
+```
+
+Example response
+
+```json
+{
+  "prediction": "adenocarcinoma",
+  "confidence": 0.997
+}
+```
+
+---
+
+## Explainability
+
+Grad-CAM is implemented to visualize regions of histopathology images that influence model predictions.
+
+Workflow
 
 ```
 Input Image
@@ -219,97 +222,19 @@ Heatmap Generation
 Overlay on Original Image
 ```
 
-This helps verify that the model focuses on **relevant tumor regions** rather than irrelevant textures.
+---
+
+## Tech Stack
+
+- Python  
+- TensorFlow / Keras  
+- NumPy  
+- Scikit-learn  
+- Matplotlib  
+- FastAPI  
 
 ---
 
-# Running the Project
+## Author
 
-## Clone the repository
-
-```bash
-git clone https://github.com/faizdevx/lung-cancer-detection.git
-cd lung-cancer-detection
-```
-
----
-
-## Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## Train the model
-
-```bash
-python src/train.py
-```
-
----
-
-## Evaluate the model
-
-```bash
-python src/evaluate.py
-```
-
----
-
-# Run the Inference API
-
-Start FastAPI server:
-
-```bash
-uvicorn api.main:app --reload
-```
-
-Open API documentation:
-
-```
-http://127.0.0.1:8000/docs
-```
-
-Upload an image and receive a prediction.
-
-Example response:
-
-```
-{
-  "prediction": "adenocarcinoma",
-  "confidence": 0.997
-}
-```
-
----
-
-#  Future Improvements
-
-Potential improvements for this system:
-
-- Fine-tuning deeper ResNet layers
-- Cross-slide validation to prevent data leakage
-- Multi-scale tissue patch analysis
-- Larger histopathology datasets
-- Clinical evaluation studies
-
----
-
-#  Tech Stack
-
-- Python
-- TensorFlow / Keras
-- NumPy
-- Scikit-learn
-- Matplotlib
-- Seaborn
-- FastAPI
-
----
-
-#  Author
-
-Faizal  
-
+Faizal
